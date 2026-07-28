@@ -27,7 +27,7 @@ def generate_plan(topic: str, past_context: Optional[str] = None) -> List[str]:
     
     # Initialize the LLM. Using gemini-2.5-flash as default.
     llm = ChatGoogleGenerativeAI(
-        model="gemini-2.5-flash",
+        model="gemini-1.5-flash",
         google_api_key=google_api_key,
         temperature=0.1
     )
