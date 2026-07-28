@@ -1,14 +1,14 @@
 import os
 from typing import List, Dict, Any
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from langchain_google_genai import ChatGoogleGenerativeAI
+from agents.llm_factory import get_llm
 from tools.search_tool import web_search
 from dotenv import load_dotenv
 
 # Ensure environment variables are loaded
 load_dotenv()
 
-def research_single_question(question: str, llm: ChatGoogleGenerativeAI) -> Dict[str, Any]:
+def research_single_question(question: str, llm: Any) -> Dict[str, Any]:
     """
     Researches a single sub-question: runs search and synthesizes findings with LLM.
     """
@@ -45,7 +45,7 @@ def research_single_question(question: str, llm: ChatGoogleGenerativeAI) -> Dict
         {"role": "user", "content": user_prompt}
     ]
     
-    # 2. Invoke Gemini for synthesis
+    # 2. Invoke LLM for synthesis
     try:
         response = llm.invoke(messages)
         findings = response.content
@@ -62,16 +62,7 @@ def perform_research(sub_questions: List[str]) -> List[Dict[str, Any]]:
     """
     Executes web searches and synthesis for all sub-questions in parallel.
     """
-    google_api_key = os.getenv("GOOGLE_API_KEY")
-    if not google_api_key:
-        raise ValueError("GOOGLE_API_KEY environment variable is not set.")
-    
-    llm = ChatGoogleGenerativeAI(
-        model="gemini-3.5-flash",
-        google_api_key=google_api_key,
-        temperature=0.0
-    )
-    
+    llm = get_llm(temperature=0.0)
     research_notes = []
     
     # Run all sub-questions in parallel threads for maximum speed
