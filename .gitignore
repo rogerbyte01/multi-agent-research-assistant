@@ -1,0 +1,28 @@
+# Node / Frontend
+**/node_modules/
+**/dist/
+frontend/dist/
+
+# Python / Backend
+**/__pycache__/
+**/.venv/
+*.pyc
+*.pyo
+*.pyd
+
+# Local Database (ChromaDB)
+**/chroma_data/
+
+# Environment Secrets
+**/.env
+**/.env.local
+**/.env.*.local
+
+# IDEs
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
