@@ -44,7 +44,7 @@ def review_report(
         raise ValueError("GOOGLE_API_KEY environment variable is not set.")
         
     llm = ChatGoogleGenerativeAI(
-        model="gemini-1.5-flash",
+        model="gemini-3.5-flash",
         google_api_key=google_api_key,
         temperature=0.0  # Set to 0.0 for strict, objective rubric validation
     )

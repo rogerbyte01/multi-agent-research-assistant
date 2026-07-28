@@ -22,7 +22,7 @@ def generate_report(
         raise ValueError("GOOGLE_API_KEY environment variable is not set.")
         
     llm = ChatGoogleGenerativeAI(
-        model="gemini-1.5-flash",
+        model="gemini-3.5-flash",
         google_api_key=google_api_key,
         temperature=0.2  # Slightly higher temperature for more fluid, readable writing
     )

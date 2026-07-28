@@ -67,7 +67,7 @@ def perform_research(sub_questions: List[str]) -> List[Dict[str, Any]]:
         raise ValueError("GOOGLE_API_KEY environment variable is not set.")
     
     llm = ChatGoogleGenerativeAI(
-        model="gemini-1.5-flash",
+        model="gemini-3.5-flash",
         google_api_key=google_api_key,
         temperature=0.0
     )
